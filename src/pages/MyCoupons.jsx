@@ -1,152 +1,114 @@
-import { useState } from "react";
-
-import Navbar from "../components/Navbar";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow
-} from "@mui/material";
-
 import { getCouponsByUser } from "../services/userCouponService";
+import "../styles/MyCoupons.css";
 
 function MyCoupons() {
 
-  const [userId, setUserId] = useState("");
   const [coupons, setCoupons] = useState([]);
+
+  useEffect(() => {
+
+    loadCoupons();
+
+  }, []);
 
   const loadCoupons = async () => {
 
     try {
 
+      const userId = localStorage.getItem("userId");
+
       const response = await getCouponsByUser(userId);
+      console.log(response.data);
 
       setCoupons(response.data);
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
       console.error(error);
-
-      alert("Failed to load coupons");
 
     }
 
   };
 
   return (
-    <>
-      <Navbar />
 
-      <Box sx={{ display: "flex" }}>
+    <div className="coupon-layout">
 
-        <Sidebar />
+      <Sidebar />
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+      <div className="coupon-container">
 
-          <Typography
-            variant="h4"
-            gutterBottom
-          >
-            My Coupons
-          </Typography>
+        <div className="coupon-header">
 
-          <TextField
-            label="User ID"
-            value={userId}
-            onChange={(e) =>
-              setUserId(e.target.value)
-            }
-          />
+          <h1>🎟 My Coupons</h1>
 
-          <Button
-            variant="contained"
-            sx={{ ml: 2 }}
-            onClick={loadCoupons}
-          >
-            Search
-          </Button>
+          <p>
+            Your rewards and discount coupons.
+          </p>
 
-          <br /><br />
+        </div>
 
-          <TableContainer component={Paper}>
+        <div className="coupon-grid">
 
-            <Table>
+          {
 
-              <TableHead>
+            coupons.map((coupon) => (
 
-                <TableRow>
+              <div
+                className="coupon-card"
+                key={coupon.id}
+              >
 
-                  <TableCell>
-                    Giveaway Code
-                  </TableCell>
+                <div className="coupon-code">
 
-                  <TableCell>
-                    Coupon
-                  </TableCell>
+                  {coupon.couponCode}
 
-                  <TableCell>
-                    Campaign
-                  </TableCell>
+                </div>
 
-                  <TableCell>
-                    Used
-                  </TableCell>
+                <h2>
 
-                </TableRow>
+                  {coupon.couponTitle}
 
-              </TableHead>
+                </h2>
 
-              <TableBody>
+                <p>
 
-                {coupons.map((coupon) => (
+                  Discount ₹ {coupon.discountAmount}
 
-                  <TableRow key={coupon.id}>
+                </p>
 
-                    <TableCell>
-                      {coupon.giveawayCode}
-                    </TableCell>
+                <span>
 
-                    <TableCell>
-                      {coupon.couponTitle}
-                    </TableCell>
+                  Expiry :
+                  {" "}
+                  {coupon.expiryDate}
 
-                    <TableCell>
-                      {coupon.campaignName}
-                    </TableCell>
+                </span>
 
-                    <TableCell>
+                <button>
 
-                      {coupon.used
-                        ? "Yes"
-                        : "No"}
+                  Copy Code
 
-                    </TableCell>
+                </button>
 
-                  </TableRow>
+              </div>
 
-                ))}
+            ))
 
-              </TableBody>
+          }
 
-            </Table>
+        </div>
 
-          </TableContainer>
+      </div>
 
-        </Box>
+    </div>
 
-      </Box>
-
-    </>
   );
+
 }
 
 export default MyCoupons;

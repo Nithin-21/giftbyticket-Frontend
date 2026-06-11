@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../services/authService";
+import "../styles/Register.css";
 
 function Register() {
 
@@ -26,14 +27,14 @@ function Register() {
 
       alert("Registration Successful");
 
-      navigate("/");
+      navigate("/login");
 
     }
     catch (error) {
 
-      alert("Registration Failed");
-
       console.error(error);
+
+      alert("Registration Failed");
 
     }
 
@@ -41,58 +42,73 @@ function Register() {
 
   return (
 
-    <form onSubmit={handleRegister}>
+    <div className="register-page">
 
-      <h1>Register</h1>
+      <div className="left-section">
 
-      <input
-        placeholder="Name"
-        value={name}
-        onChange={(e) =>
-          setName(e.target.value)
-        }
-      />
+        <h1>🎁 GiftByTicket</h1>
 
-      <br /><br />
+        <p>
+          Join giveaway campaigns and
+          unlock exciting rewards.
+        </p>
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) =>
-          setEmail(e.target.value)
-        }
-      />
+      </div>
 
-      <br /><br />
+      <div className="register-card">
 
-      <input
-        placeholder="Mobile"
-        value={mobile}
-        onChange={(e) =>
-          setMobile(e.target.value)
-        }
-      />
+        <h1>Create Account</h1>
 
-      <br /><br />
+        <form onSubmit={handleRegister}>
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) =>
-          setPassword(e.target.value)
-        }
-      />
+          <input
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-      <br /><br />
+          <input
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-      <button type="submit">
+          <input
+            placeholder="Mobile Number"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+          />
 
-        Register
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-      </button>
+          <button type="submit">
 
-    </form>
+            Register
+
+          </button>
+
+        </form>
+
+        <p>
+
+          Already have an account?
+
+          <Link to="/login">
+
+            Login
+
+          </Link>
+
+        </p>
+
+      </div>
+
+    </div>
 
   );
 

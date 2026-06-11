@@ -1,0 +1,89 @@
+.campaign-layout{
+    display:flex;
+    min-height:100vh;
+    background:#020f2f;
+}
+
+.campaign-container{
+    flex:1;
+    padding:50px;
+}
+
+.campaign-header h1{
+    color:white;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.campaign-header p{
+    color:#9ca3af;
+    font-size:20px;
+    margin-bottom:40px;
+}
+
+.campaign-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.campaign-card{
+    width:360px;
+    background:linear-gradient(145deg,#1d2540,#242d4d);
+    border-radius:25px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+    overflow:hidden;
+}
+
+.campaign-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(124,58,237,.35);
+}
+
+.campaign-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.campaign-card h2{
+    color:white;
+    margin-bottom:15px;
+    font-size:30px;
+}
+
+.campaign-description{
+    color:#cbd5e1;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.campaign-info{
+    display:flex;
+    justify-content:space-between;
+    color:#d1d5db;
+    margin-bottom:25px;
+}
+
+.status.active{
+    color:#22c55e;
+    font-weight:600;
+}
+
+.participate-btn{
+    width:100%;
+    border:none;
+    padding:16px;
+    border-radius:15px;
+    background:linear-gradient(90deg,#7c3aed,#d946ef);
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.participate-btn:hover{
+    transform:scale(1.03);
+}

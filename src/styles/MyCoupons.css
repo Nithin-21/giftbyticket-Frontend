@@ -1,0 +1,116 @@
+.coupon-layout{
+    display:flex;
+    min-height:100vh;
+    background:#020f2f;
+}
+
+.coupon-container{
+    flex:1;
+    padding:50px;
+}
+
+.coupon-header h1{
+    color:white;
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+.coupon-header p{
+    color:#94a3b8;
+    margin-bottom:40px;
+    font-size:20px;
+}
+
+.coupon-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.coupon-card{
+    width:330px;
+    background:
+    linear-gradient(
+    145deg,
+    #7c3aed,
+    #d946ef);
+
+    padding:30px;
+    border-radius:25px;
+
+    color:white;
+
+    transition:.3s;
+}
+
+.coupon-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 40px
+    rgba(124,58,237,.4);
+
+}
+
+.coupon-code{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+
+}
+
+.coupon-card h2{
+
+    margin-bottom:15px;
+
+}
+
+.coupon-card p{
+
+    margin-bottom:15px;
+
+}
+
+.coupon-card span{
+
+    display:block;
+
+    margin-bottom:25px;
+
+}
+
+.coupon-card button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    color:#7c3aed;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.coupon-card button:hover{
+
+    background:#f3f4f6;
+
+}

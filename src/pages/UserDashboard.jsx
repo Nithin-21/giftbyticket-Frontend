@@ -1,90 +1,85 @@
-import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Grid
-} from "@mui/material";
 
 function UserDashboard() {
 
   return (
-    <>
-      <Navbar />
 
-      <Box sx={{ display: "flex" }}>
+    <div
+      style={{
+        display: "flex",
+        background: "#071226",
+        minHeight: "100vh"
+      }}
+    >
 
-        <Sidebar />
+      <Sidebar />
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+      <div
+        style={{
+          padding: "40px",
+          color: "white"
+        }}
+      >
 
-          <Typography
-            variant="h4"
-            gutterBottom
+        <h1>
+          Welcome User 👋
+        </h1>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            marginTop: "30px"
+          }}
+        >
+
+          <div
+            style={{
+              background: "white",
+              color: "black",
+              padding: "30px",
+              borderRadius: "20px",
+              width: "200px"
+            }}
           >
-            Welcome User
-          </Typography>
+            <h2>0</h2>
+            <p>My Participations</p>
+          </div>
 
-          <Grid container spacing={3}>
+          <div
+            style={{
+              background: "white",
+              color: "black",
+              padding: "30px",
+              borderRadius: "20px",
+              width: "200px"
+            }}
+          >
+            <h2>0</h2>
+            <p>My Coupons</p>
+          </div>
 
-            <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
+          <div
+            style={{
+              background: "white",
+              color: "black",
+              padding: "30px",
+              borderRadius: "20px",
+              width: "200px"
+            }}
+          >
+            <h2>0</h2>
+            <p>Winning Coupons</p>
+          </div>
 
-                  <Typography variant="h6">
-                    My Participations
-                  </Typography>
+        </div>
 
-                  <Typography variant="h3">
-                    0
-                  </Typography>
+      </div>
 
-                </CardContent>
-              </Card>
-            </Grid>
+    </div>
 
-            <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
-
-                  <Typography variant="h6">
-                    My Coupons
-                  </Typography>
-
-                  <Typography variant="h3">
-                    0
-                  </Typography>
-
-                </CardContent>
-              </Card>
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
-
-                  <Typography variant="h6">
-                    Winning Coupons
-                  </Typography>
-
-                  <Typography variant="h3">
-                    0
-                  </Typography>
-
-                </CardContent>
-              </Card>
-            </Grid>
-
-          </Grid>
-
-        </Box>
-
-      </Box>
-    </>
   );
+
 }
 
 export default UserDashboard;

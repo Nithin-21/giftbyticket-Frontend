@@ -1,18 +1,7 @@
 import { useEffect, useState } from "react";
-
-import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-
-import {
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  Button
-} from "@mui/material";
-
 import { getAllCampaigns } from "../services/campaignService";
+import "../styles/UserCampaignList.css";
 
 function UserCampaignList() {
 
@@ -33,6 +22,7 @@ function UserCampaignList() {
       setCampaigns(response.data);
 
     }
+
     catch (error) {
 
       console.error(error);
@@ -43,103 +33,104 @@ function UserCampaignList() {
 
   const handleParticipate = (id) => {
 
-    alert(
-      `Participating in Campaign ID ${id}`
-    );
+    alert(`Participating in Campaign ${id}`);
 
   };
 
   return (
-    <>
-      <Navbar />
 
-      <Box sx={{ display: "flex" }}>
+    <div className="campaign-layout">
 
-        <Sidebar />
+      <Sidebar />
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+      <div className="campaign-container">
 
-          <Typography
-            variant="h4"
-            gutterBottom
-          >
-            Available Campaigns
-          </Typography>
+        <div className="campaign-header">
 
-          <Grid container spacing={3}>
+          <h1>🎉 Available Campaigns</h1>
 
-            {campaigns.map((campaign) => (
+          <p>
+            Participate and win exciting rewards.
+          </p>
 
-              <Grid
-                item
-                xs={12}
-                md={4}
+        </div>
+
+        <div className="campaign-grid">
+
+          {
+
+            campaigns.map((campaign) => (
+
+              <div
+                className="campaign-card"
                 key={campaign.id}
               >
 
-                <Card>
+                <div className="campaign-icon">
 
-                  <CardContent>
+                  🎁
 
-                    <Typography variant="h5">
+                </div>
 
-                      {campaign.campaignName}
+                <h2>
 
-                    </Typography>
+                  {campaign.campaignName}
 
-                    <br />
+                </h2>
 
-                    <Typography>
+                <p className="campaign-description">
 
-                      {campaign.description}
+                  {campaign.description}
 
-                    </Typography>
+                </p>
 
-                    <br />
+                <div className="campaign-info">
 
-                    <Typography>
+                  <div>
 
-                      Entry Fee : ₹ {campaign.entryFee}
+                    💰 ₹{campaign.entryFee}
 
-                    </Typography>
+                  </div>
 
-                    <br />
+                  <div
+                    className={
+                      campaign.status === "ACTIVE"
+                        ? "status active"
+                        : "status"
+                    }
+                  >
 
-                    <Typography>
+                    📌 {campaign.status}
 
-                      Status : {campaign.status}
+                  </div>
 
-                    </Typography>
+                </div>
 
-                    <br />
+                <button
+                  className="participate-btn"
+                  onClick={() =>
+                    handleParticipate(campaign.id)
+                  }
+                >
 
-                    <Button
-                      variant="contained"
-                      onClick={() =>
-                        handleParticipate(
-                          campaign.id
-                        )
-                      }
-                    >
-                      Participate
-                    </Button>
+                  Participate
 
-                  </CardContent>
+                </button>
 
-                </Card>
+              </div>
 
-              </Grid>
+            ))
 
-            ))}
+          }
 
-          </Grid>
+        </div>
 
-        </Box>
+      </div>
 
-      </Box>
+    </div>
 
-    </>
   );
+
 }
 
 export default UserCampaignList;

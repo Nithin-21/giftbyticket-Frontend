@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import "../styles/Sidebar.css";
 
 function Sidebar() {
 
   const navigate = useNavigate();
 
   const role = localStorage.getItem("role");
-
-  console.log("Role:", role);
+  console.log("Role = ", role);
 
   const handleLogout = () => {
 
@@ -21,106 +20,105 @@ function Sidebar() {
 
   return (
 
-    <Box
-      sx={{
-        width: 220,
-        minHeight: "100vh",
-        bgcolor: "#f5f5f5",
-        p: 2
-      }}
-    >
+    <div className="sidebar">
 
-      <Typography variant="h6">
-        Menu
-      </Typography>
+      <div className="sidebar-logo">
+      
+          <h1>
+              🎁
+          </h1>
+      
+          <h2>
+              GiftByTicket
+          </h2>
+      
+      </div>
 
-      {/* ADMIN MENU */}
+      <div className="sidebar-links">
 
-      {role?.toUpperCase() === "ADMIN" && (
-        <>
+        {role?.toUpperCase() === "ADMIN" && (
+          <>
 
-          <Link to="/dashboard">
-            <p>Dashboard</p>
-          </Link>
+            <Link className="sidebar-item" to="/dashboard">
+              🏠 Dashboard
+            </Link>
 
-          <Link to="/campaigns">
-            <p>Campaigns</p>
-          </Link>
+            <Link className="sidebar-item" to="/campaigns">
+              📢 Campaigns
+            </Link>
 
-          <Link to="/campaigns/create">
-            <p>Create Campaign</p>
-          </Link>
+            <Link className="sidebar-item" to="/campaigns/create">
+              ➕ Create Campaign
+            </Link>
 
-          <Link to="/coupons">
-            <p>Coupons</p>
-          </Link>
+            <Link className="sidebar-item" to="/coupons">
+              🎟 Coupons
+            </Link>
 
-          <Link to="/coupons/create">
-            <p>Create Coupon</p>
-          </Link>
+            <Link className="sidebar-item" to="/coupons/create">
+              ➕ Create Coupon
+            </Link>
 
-          <Link to="/winners">
-            <p>Winners</p>
-          </Link>
+            <Link className="sidebar-item" to="/winners">
+              🏆 Winners
+            </Link>
 
-          <Link to="/winners/create">
-            <p>Create Winner</p>
-          </Link>
+            <Link className="sidebar-item" to="/winners/create">
+              ➕ Create Winner
+            </Link>
 
-          <Link to="/user-coupons">
-            <p>User Coupons</p>
-          </Link>
+            <Link className="sidebar-item" to="/user-coupons">
+              🎫 User Coupons
+            </Link>
 
-          <Link to="/user-coupons/assign">
-            <p>Assign Coupon</p>
-          </Link>
+            <Link className="sidebar-item" to="/user-coupons/assign">
+              🎁 Assign Coupon
+            </Link>
 
-        </>
-      )}
+          </>
+        )}
 
-      {/* USER MENU */}
+        {role?.toUpperCase() === "USER" && (
+          <>
 
-      {role?.toUpperCase() === "USER" && (
-        <>
+            <Link className="sidebar-item" to="/user-dashboard">
+              🏠 Dashboard
+            </Link>
 
-          <Link to="/user-dashboard">
-            <p>User Dashboard</p>
-          </Link>
+            <Link className="sidebar-item" to="/browse-campaigns">
+              📢 Campaigns
+            </Link>
 
-          <Link to="/browse-campaigns">
-            <p>Browse Campaigns</p>
-          </Link>
+            <Link className="sidebar-item" to="/my-coupons">
+              🎟 My Coupons
+            </Link>
 
-          <Link to="/my-coupons">
-            <p>My Coupons</p>
-          </Link>
+            <Link className="sidebar-item" to="/user-winners">
+              🏆 Winners
+            </Link>
 
-          <Link to="/user-winners">
-            <p>Winners</p>
-          </Link>
+            <Link className="sidebar-item" to="/profile">
+              👤 Profile
+            </Link>
 
-          <Link to="/profile">
-            <p>Profile</p>
-          </Link>
+          </>
+        )}
 
-        </>
-      )}
+        <div
+          className="sidebar-item logout"
+          onClick={handleLogout}
+        >
 
-      {/* LOGOUT */}
+          🚪 Logout
 
-      <p
-        onClick={handleLogout}
-        style={{
-          cursor: "pointer",
-          color: "red"
-        }}
-      >
-        Logout
-      </p>
+        </div>
 
-    </Box>
+      </div>
+
+    </div>
 
   );
+
 }
 
 export default Sidebar;

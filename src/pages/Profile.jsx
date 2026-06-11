@@ -1,29 +1,45 @@
-import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useState, useEffect } from "react";
 import { getUserById, updateUser } from "../services/userService";
-
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TextField,
-  Button
-} from "@mui/material";
+import "../styles/Profile.css";
 
 function Profile() {
+
+  const userId = localStorage.getItem("userId");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  
-  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+
+    loadUser();
+
+  }, []);
+
+  const loadUser = async () => {
+
+    try {
+
+      const response = await getUserById(userId);
+
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setMobile(response.data.mobile);
+
+    }
+    catch (error) {
+
+      console.error(error);
+
+    }
+
+  };
 
   const handleUpdate = async () => {
-  
+
     try {
-  
+
       await updateUser(
         userId,
         {
@@ -32,90 +48,124 @@ function Profile() {
           mobile
         }
       );
-  
+
       alert("Profile Updated Successfully");
-  
+
     }
     catch (error) {
-  
+
       console.error(error);
-  
+
       alert("Update Failed");
-  
+
     }
-  
+
   };
 
   return (
-    <>
-      <Navbar />
 
-      <Box sx={{ display: "flex" }}>
+    <div className="profile-layout">
 
-        <Sidebar />
+      <Sidebar />
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+      <div className="profile-container">
 
-          <Card sx={{ maxWidth: 600 }}>
+        <div className="profile-card">
 
-            <CardContent>
+          <div className="profile-top">
 
-              <Typography
-                variant="h4"
-                gutterBottom
-              >
-                Profile
-              </Typography>
+            <div className="profile-avatar">
 
-              <TextField
-                fullWidth
-                label="Name"
-                margin="normal"
+              {
+                name
+                  ? name
+                      .split(" ")
+                      .map(word => word[0])
+                      .join("")
+                      .toUpperCase()
+                  : "U"
+              }
+
+            </div>
+
+            <h1>
+              {name}
+            </h1>
+
+            <p>
+              GiftByTicket Member
+            </p>
+
+          </div>
+
+          <div className="profile-form">
+
+            <div className="field">
+
+              <label>
+                Name
+              </label>
+
+              <input
+                type="text"
                 value={name}
                 onChange={(e) =>
                   setName(e.target.value)
                 }
               />
 
-              <TextField
-                fullWidth
-                label="Email"
-                margin="normal"
+            </div>
+
+            <div className="field">
+
+              <label>
+                Email
+              </label>
+
+              <input
+                type="email"
                 value={email}
                 onChange={(e) =>
                   setEmail(e.target.value)
                 }
               />
 
-              <TextField
-                fullWidth
-                label="Mobile"
-                margin="normal"
+            </div>
+
+            <div className="field">
+
+              <label>
+                Mobile Number
+              </label>
+
+              <input
+                type="text"
                 value={mobile}
                 onChange={(e) =>
                   setMobile(e.target.value)
                 }
               />
 
-              <br />
-              <br />
+            </div>
 
-              <Button
-                variant="contained"
-                onClick={handleUpdate}
-              >
-                Update Profile
-              </Button>
+            <button
+              onClick={handleUpdate}
+            >
 
-            </CardContent>
+              Save Changes
 
-          </Card>
+            </button>
 
-        </Box>
+          </div>
 
-      </Box>
-    </>
+        </div>
+
+      </div>
+
+    </div>
+
   );
+
 }
 
 export default Profile;
