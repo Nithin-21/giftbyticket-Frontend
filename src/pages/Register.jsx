@@ -10,11 +10,52 @@ function Register() {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
 
+  const [errors, setErrors] = useState({});
+
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
 
     e.preventDefault();
+
+    let validationErrors = {};
+
+    if (!name.trim()) {
+      validationErrors.name = "Name is required";
+    }
+
+    if (!email.trim()) {
+      validationErrors.email = "Email is required";
+    }
+    else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+      validationErrors.email = "Enter valid email";
+    }
+
+    if (!mobile.trim()) {
+      validationErrors.mobile = "Mobile number is required";
+    }
+    else if (
+      !/^\d{10}$/.test(mobile)
+    ) {
+      validationErrors.mobile =
+        "Enter valid 10 digit mobile number";
+    }
+
+    if (!password.trim()) {
+      validationErrors.password =
+        "Password is required";
+    }
+
+    if (
+      Object.keys(validationErrors).length > 0
+    ) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
 
     try {
 
@@ -32,9 +73,9 @@ function Register() {
     }
     catch (error) {
 
-      console.error(error);
-
       alert("Registration Failed");
+
+      console.error(error);
 
     }
 
@@ -62,46 +103,126 @@ function Register() {
         <form onSubmit={handleRegister}>
 
           <input
+            className={
+              errors.name ? "error-input" : ""
+            }
             placeholder="Full Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+
+              setName(e.target.value);
+
+              if (errors.name) {
+                setErrors(prev => ({
+                  ...prev,
+                  name: ""
+                }));
+              }
+
+            }}
           />
 
+          {
+            errors.name &&
+            <span className="error-text">
+              {errors.name}
+            </span>
+          }
+
           <input
+            className={
+              errors.email ? "error-input" : ""
+            }
             placeholder="Email Address"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+
+              setEmail(e.target.value);
+
+              if (errors.email) {
+                setErrors(prev => ({
+                  ...prev,
+                  email: ""
+                }));
+              }
+
+            }}
           />
 
+          {
+            errors.email &&
+            <span className="error-text">
+              {errors.email}
+            </span>
+          }
+
           <input
+            className={
+              errors.mobile ? "error-input" : ""
+            }
             placeholder="Mobile Number"
             value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
+            onChange={(e) => {
+
+              setMobile(e.target.value);
+
+              if (errors.mobile) {
+                setErrors(prev => ({
+                  ...prev,
+                  mobile: ""
+                }));
+              }
+
+            }}
           />
+
+          {
+            errors.mobile &&
+            <span className="error-text">
+              {errors.mobile}
+            </span>
+          }
 
           <input
             type="password"
+            className={
+              errors.password ? "error-input" : ""
+            }
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+
+              setPassword(e.target.value);
+
+              if (errors.password) {
+                setErrors(prev => ({
+                  ...prev,
+                  password: ""
+                }));
+              }
+
+            }}
           />
 
+          {
+            errors.password &&
+            <span className="error-text">
+              {errors.password}
+            </span>
+          }
+
           <button type="submit">
-
             Register
-
           </button>
 
         </form>
 
-        <p>
+        <p className="login-link">
 
           Already have an account?
 
           <Link to="/login">
-
             Login
-
           </Link>
 
         </p>

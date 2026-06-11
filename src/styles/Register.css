@@ -82,3 +82,31 @@
     box-shadow:
     0 8px 30px rgba(174,68,255,.4);
 }
+.error-input{
+    border:2px solid #ef4444 !important;
+    background:#3b2230 !important;
+}
+
+.error-text{
+    color:#ef4444;
+    font-size:13px;
+    margin-top:-12px;
+    margin-bottom:8px;
+    display:block;
+}
+
+.login-link{
+    margin-top:20px;
+    text-align:center;
+}
+
+.login-link a{
+    margin-left:6px;
+    color:#a855f7;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.login-link a:hover{
+    color:#c084fc;
+}
