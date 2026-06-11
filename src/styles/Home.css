@@ -1,26 +1,28 @@
 .home {
-  background: #07142d;
+  background: linear-gradient(180deg, #07142d 0%, #0a1f47 100%);
   color: white;
   min-height: 100vh;
 }
 
-/* NAVBAR */
+/* ==========================
+   NAVBAR
+========================== */
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 25px 80px;
+  padding: 20px 70px;
 
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 
   position: sticky;
   top: 0;
 
   background: rgba(7,20,45,.95);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
 
   z-index: 1000;
 }
@@ -32,70 +34,77 @@
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 35px;
 }
 
-.nav-links a {
-  text-decoration: none;
+.nav-links a,
+.nav-links button {
   color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
   font-size: 1rem;
 }
 
-.nav-links a:hover {
-  color: #9f6fff;
+.nav-links a:hover,
+.nav-links button:hover {
+  color: #a855f7;
 }
 
-/* HERO */
+/* ==========================
+   HERO
+========================== */
 
 .hero {
-  
-  padding: 70px 80px 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  padding: 40px 80px 50px;
   text-align: center;
 }
 
 .hero-content {
   max-width: 900px;
+  margin: auto;
 }
 
 .badge {
   display: inline-block;
 
   background: rgba(124,58,237,.2);
-
   color: #c4b5fd;
 
   padding: 10px 20px;
 
   border-radius: 30px;
 
-  margin-bottom: 12px;
-}
-
-.hero h1 {
-  font-size: 4.5rem;
-  line-height: 1.1;
-
   margin-bottom: 15px;
 }
 
-.hero p {
-  font-size: 1.3rem;
-  color: #cbd5e1;
+.hero h1 {
+  font-size: 4rem;
+  line-height: 1.15;
 
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
-/* BUTTONS */
+.hero p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+
+  max-width: 700px;
+
+  margin: 0 auto 30px;
+}
 
 .hero-buttons {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
+
+/* ==========================
+   BUTTONS
+========================== */
 
 .primary-btn {
   background: linear-gradient(
@@ -106,13 +115,19 @@
 
   color: white;
 
+  border: none;
+
   padding: 15px 35px;
 
   border-radius: 14px;
 
+  font-weight: 600;
+
   text-decoration: none;
 
-  font-weight: 600;
+  cursor: pointer;
+
+  transition: .25s;
 }
 
 .primary-btn:hover {
@@ -120,7 +135,7 @@
 }
 
 .secondary-btn {
-  border: 1px solid rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.15);
 
   color: white;
 
@@ -129,19 +144,38 @@
   border-radius: 14px;
 
   text-decoration: none;
+
+  transition: .25s;
 }
 
-/* HOW IT WORKS */
-
-.how-section {
-  padding: 100px 80px;
+.secondary-btn:hover {
+  background: rgba(255,255,255,.05);
 }
 
-.how-section h2 {
+/* ==========================
+   COMMON SECTIONS
+========================== */
+
+.how-section,
+.campaigns,
+.benefits,
+.cta-section {
+  padding: 60px 80px;
+}
+
+.how-section h2,
+.campaigns h2,
+.benefits h2 {
   text-align: center;
+
   font-size: 3rem;
-  margin-bottom: 60px;
+
+  margin-bottom: 35px;
 }
+
+/* ==========================
+   HOW IT WORKS
+========================== */
 
 .steps {
   display: grid;
@@ -159,40 +193,41 @@
 
   border-radius: 20px;
 
-  padding: 30px;
+  padding: 25px;
 
   text-align: center;
+
+  transition: .3s;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
 }
 
 .step-number {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
+
+  margin: auto auto 18px;
 
   border-radius: 50%;
 
   background: #7c3aed;
 
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  margin: auto;
-  margin-bottom: 20px;
+  align-items: center;
 
   font-weight: bold;
 }
 
-/* CAMPAIGNS */
-
-.campaigns {
-  padding: 100px 80px;
+.step-card h3 {
+  margin-bottom: 12px;
 }
 
-.campaigns h2 {
-  text-align: center;
-  font-size: 3rem;
-  margin-bottom: 60px;
-}
+/* ==========================
+   CAMPAIGNS
+========================== */
 
 .campaign-grid {
   display: grid;
@@ -200,17 +235,23 @@
   grid-template-columns:
     repeat(auto-fit,minmax(350px,1fr));
 
-  gap: 30px;
+  gap: 25px;
 }
 
 .campaign-card {
   background: rgba(255,255,255,.05);
 
-  border-radius: 20px;
-
   border: 1px solid rgba(255,255,255,.08);
 
-  padding: 30px;
+  border-radius: 20px;
+
+  padding: 25px;
+
+  transition: .3s;
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
 }
 
 .campaign-card h3 {
@@ -229,7 +270,11 @@
 .campaign-card button {
   width: 100%;
 
-  background: #7c3aed;
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #9333ea
+  );
 
   color: white;
 
@@ -242,17 +287,9 @@
   cursor: pointer;
 }
 
-/* BENEFITS */
-
-.benefits {
-  padding: 100px 80px;
-}
-
-.benefits h2 {
-  text-align: center;
-  font-size: 3rem;
-  margin-bottom: 60px;
-}
+/* ==========================
+   BENEFITS
+========================== */
 
 .benefit-grid {
   display: grid;
@@ -260,31 +297,44 @@
   grid-template-columns:
     repeat(auto-fit,minmax(250px,1fr));
 
-  gap: 20px;
+  gap: 18px;
 }
 
 .benefit-card {
   background: rgba(255,255,255,.05);
 
-  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.08);
 
-  padding: 25px;
+  border-radius: 18px;
 
-  text-align: center;
+  min-height: 90px;
 
-  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  transition: .3s;
 }
 
-/* CTA */
+.benefit-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ==========================
+   CTA
+========================== */
 
 .cta-section {
-  padding: 100px 80px;
-
   display: grid;
 
   grid-template-columns: repeat(2,1fr);
 
-  gap: 30px;
+  gap: 25px;
+
+  padding-bottom: 80px;
 }
 
 .user-box,
@@ -302,41 +352,51 @@
 
 .user-box h3,
 .brand-box h3 {
-  margin-bottom: 20px;
   font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 .user-box p,
 .brand-box p {
-  margin-bottom: 25px;
   color: #cbd5e1;
+  margin-bottom: 25px;
 }
 
-/* MOBILE */
+/* ==========================
+   MOBILE
+========================== */
 
-@media(max-width:768px){
+@media (max-width: 768px) {
 
-  .hero h1{
-    font-size:2.7rem;
-  }
-
-  .navbar{
-    padding:20px;
+  .navbar {
+    padding: 20px;
   }
 
   .hero,
+  .how-section,
   .campaigns,
   .benefits,
-  .how-section{
-    padding:60px 20px;
+  .cta-section {
+    padding: 50px 20px;
   }
 
-  .cta-section{
-    grid-template-columns:1fr;
-    padding:60px 20px;
+  .hero h1 {
+    font-size: 2.6rem;
   }
 
-  .hero-buttons{
-    flex-direction:column;
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .cta-section {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
   }
 }
