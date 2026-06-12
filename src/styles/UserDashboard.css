@@ -1,0 +1,177 @@
+.user-dashboard-layout{
+    display:flex;
+    min-height:100vh;
+    background:#020f2f;
+}
+
+.dashboard-container{
+    flex:1;
+    padding:50px;
+}
+
+.dashboard-header h1{
+    color:white;
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.dashboard-header p{
+    color:#9ca3af;
+    font-size:20px;
+    margin-bottom:50px;
+}
+
+
+/* ================= Statistics Cards ================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:35px;
+}
+
+.dashboard-card{
+    height:270px;
+    background:#111827;
+    border-radius:30px;
+    border:2px solid;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px);
+}
+
+.card-icon{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.dashboard-card h1{
+    color:white;
+    font-size:72px;
+    margin-bottom:15px;
+}
+
+.dashboard-card p{
+    font-size:30px;
+    font-weight:600;
+}
+
+
+/* Card Colors */
+
+.pink-card{
+    border-color:#ff2f92;
+    color:#ff2f92;
+}
+
+.purple-card{
+    border-color:#9333ea;
+    color:#9333ea;
+}
+
+.orange-card{
+    border-color:#f59e0b;
+    color:#f59e0b;
+}
+
+
+/* ================= Recent Activity ================= */
+
+.activity-wrapper{
+    margin-top:70px;
+}
+
+.activity-section h2{
+    color:white;
+    font-size:40px;
+    margin-bottom:30px;
+}
+
+.activity-card{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:25px 30px;
+    margin-bottom:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    color:#d1d5db;
+
+    transition:.3s;
+}
+
+.activity-card:hover{
+    border-color:#7c3aed;
+}
+
+.activity-card span{
+    color:#9ca3af;
+}
+
+
+/* ================= Responsive ================= */
+
+@media(max-width:1000px){
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-container{
+
+        padding:30px;
+
+    }
+
+    .dashboard-header h1{
+
+        font-size:45px;
+
+    }
+
+    .dashboard-header p{
+
+        font-size:17px;
+
+    }
+
+    .dashboard-card{
+
+        height:220px;
+
+    }
+
+    .dashboard-card h1{
+
+        font-size:56px;
+
+    }
+
+    .dashboard-card p{
+
+        font-size:24px;
+
+    }
+
+    .activity-section h2{
+
+        font-size:32px;
+
+    }
+
+}

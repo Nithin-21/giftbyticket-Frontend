@@ -1,0 +1,100 @@
+.winner-layout{
+    display:flex;
+    min-height:100vh;
+    background:#020f2f;
+}
+
+.winner-container{
+    flex:1;
+    padding:50px;
+}
+
+.winner-header h1{
+    color:white;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.winner-header p{
+    color:#9ca3af;
+    font-size:20px;
+    margin-bottom:40px;
+}
+
+.winner-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+.winner-card{
+
+    background:#111827;
+
+    border:2px solid #f59e0b;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.winner-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 15px 40px rgba(245,158,11,.25);
+
+}
+
+.winner-icon{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+}
+
+.winner-card h2{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.winner-card p{
+
+    color:#d1d5db;
+
+    margin-bottom:15px;
+
+    font-size:17px;
+
+}
+
+.winner-badge{
+
+    margin-top:25px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #f59e0b,
+    #fbbf24);
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:20px;
+
+    font-weight:700;
+
+}

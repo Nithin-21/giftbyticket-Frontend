@@ -1,21 +1,7 @@
 import { useEffect, useState } from "react";
-
-import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-
-import {
-  Box,
-  Typography,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow
-} from "@mui/material";
-
 import { getAllWinners } from "../services/winnerService";
+import "../styles/UserWinners.css";
 
 function UserWinners() {
 
@@ -36,6 +22,7 @@ function UserWinners() {
       setWinners(response.data);
 
     }
+
     catch (error) {
 
       console.error(error);
@@ -45,86 +32,80 @@ function UserWinners() {
   };
 
   return (
-    <>
-      <Navbar />
 
-      <Box sx={{ display: "flex" }}>
+    <div className="winner-layout">
 
-        <Sidebar />
+      <Sidebar />
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+      <div className="winner-container">
 
-          <Typography
-            variant="h4"
-            gutterBottom
-          >
-            Winners
-          </Typography>
+        <div className="winner-header">
 
-          <TableContainer component={Paper}>
+          <h1>
+            🏆 Winners Hall
+          </h1>
 
-            <Table>
+          <p>
+            Celebrate our lucky winners and exciting rewards.
+          </p>
 
-              <TableHead>
+        </div>
 
-                <TableRow>
+        <div className="winner-grid">
 
-                  <TableCell>ID</TableCell>
+          {
 
-                  <TableCell>
-                    Campaign ID
-                  </TableCell>
+            winners.map((winner) => (
 
-                  <TableCell>
-                    User ID
-                  </TableCell>
+              <div
+                className="winner-card"
+                key={winner.id}
+              >
 
-                  <TableCell>
-                    Winner Date
-                  </TableCell>
+                <div className="winner-icon">
 
-                </TableRow>
+                  🏆
 
-              </TableHead>
+                </div>
 
-              <TableBody>
+                <h2>
 
-                {winners.map((winner) => (
+                  User #{winner.userId}
 
-                  <TableRow key={winner.id}>
+                </h2>
 
-                    <TableCell>
-                      {winner.id}
-                    </TableCell>
+                <p>
 
-                    <TableCell>
-                      {winner.campaignId}
-                    </TableCell>
+                  🎁 Campaign #{winner.campaignId}
 
-                    <TableCell>
-                      {winner.userId}
-                    </TableCell>
+                </p>
 
-                    <TableCell>
-                      {winner.winnerDate}
-                    </TableCell>
+                <p>
 
-                  </TableRow>
+                  📅 {winner.winnerDate}
 
-                ))}
+                </p>
 
-              </TableBody>
+                <div className="winner-badge">
 
-            </Table>
+                  ★ WINNER ★
 
-          </TableContainer>
+                </div>
 
-        </Box>
+              </div>
 
-      </Box>
+            ))
 
-    </>
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
   );
+
 }
 
 export default UserWinners;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { getAllCampaigns } from "../services/campaignService";
+import { createEntry } from "../services/giveawayEntryService";
 import "../styles/UserCampaignList.css";
-import { createEntry }
-from "../services/giveawayEntryService";
+
 function UserCampaignList() {
 
   const [campaigns, setCampaigns] = useState([]);
@@ -32,40 +32,72 @@ function UserCampaignList() {
 
   };
 
-  const handleParticipate = async (
-  campaignId
-) => {
+  const handleParticipate = async (campaignId) => {
 
-  try {
+    try {
 
-    const userId =
-      localStorage.getItem("userId");
+      const userId =
+        localStorage.getItem("userId");
 
-    const response =
-      await createEntry({
-        userId,
-        campaignId
-      });
+      const response =
+        await createEntry({
+          userId,
+          campaignId
+        });
 
-    alert(
-      `Successfully registered for ${response.data.campaignName}
+      alert(
 
-Coupon Assigned: ${response.data.couponTitle}
+`🎉 Successfully Registered!
 
-Giveaway Code: ${response.data.giveawayCode}`
-    );
+Campaign : ${response.data.campaignName}
 
-  } catch (error) {
+Coupon Assigned : ${response.data.couponTitle}
 
-    console.error(error);
+Giveaway Code : ${response.data.giveawayCode}`
 
-    alert(
-      error.response?.data ||
-      "Participation Failed"
-    );
+      );
 
-  }
-};
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      if (
+        error.response &&
+        error.response.data
+      ) {
+
+        if (
+          typeof error.response.data === "string"
+        ) {
+
+          alert(error.response.data);
+
+        }
+
+        else {
+
+          alert(
+            error.response.data.message ||
+            "You have already participated in this campaign."
+          );
+
+        }
+
+      }
+
+      else {
+
+        alert(
+          "Something went wrong. Please try again."
+        );
+
+      }
+
+    }
+
+  };
 
   return (
 
@@ -77,7 +109,9 @@ Giveaway Code: ${response.data.giveawayCode}`
 
         <div className="campaign-header">
 
-          <h1>🎉 Available Campaigns</h1>
+          <h1>
+            🎉 Available Campaigns
+          </h1>
 
           <p>
             Participate and win exciting rewards.
@@ -139,7 +173,9 @@ Giveaway Code: ${response.data.giveawayCode}`
                 <button
                   className="participate-btn"
                   onClick={() =>
-                    handleParticipate(campaign.id)
+                    handleParticipate(
+                      campaign.id
+                    )
                   }
                 >
 

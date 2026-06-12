@@ -21,7 +21,7 @@ function MyCoupons() {
 
       const response = await getCouponsByUser(userId);
 
-      console.log(response.data);
+      console.log(response.data[0]);
 
       setCoupons(response.data);
 

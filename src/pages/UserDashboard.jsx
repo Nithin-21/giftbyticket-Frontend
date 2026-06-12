@@ -1,75 +1,183 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
+import { getUserDashboard } from "../services/dashboardService";
+import "../styles/UserDashboard.css";
 
 function UserDashboard() {
 
+  const [stats, setStats] = useState({
+    participationCount: 0,
+    couponCount: 0,
+    winnerCount: 0
+  });
+
+  useEffect(() => {
+
+    loadDashboard();
+
+  }, []);
+
+  const loadDashboard = async () => {
+
+    try {
+
+      const userId = localStorage.getItem("userId");
+
+      const response =
+        await getUserDashboard(userId);
+
+      setStats(response.data);
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+    }
+
+  };
+
   return (
 
-    <div
-      style={{
-        display: "flex",
-        background: "#071226",
-        minHeight: "100vh"
-      }}
-    >
+    <div className="user-dashboard-layout">
 
       <Sidebar />
 
-      <div
-        style={{
-          padding: "40px",
-          color: "white"
-        }}
-      >
+      <div className="dashboard-container">
 
-        <h1>
-          Welcome User 👋
-        </h1>
+        <div className="dashboard-header">
 
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            marginTop: "30px"
-          }}
-        >
+          <h1>
 
-          <div
-            style={{
-              background: "white",
-              color: "black",
-              padding: "30px",
-              borderRadius: "20px",
-              width: "200px"
-            }}
-          >
-            <h2>0</h2>
-            <p>My Participations</p>
+            Welcome Back, User 👋
+
+          </h1>
+
+          <p>
+
+            Track your campaigns, rewards and winning coupons.
+
+          </p>
+
+        </div>
+
+
+        {/* Stats Cards */}
+
+        <div className="stats-grid">
+
+          <div className="dashboard-card pink-card">
+
+            <div className="card-icon">
+              🎟
+            </div>
+
+            <h1>
+              {stats.participationCount}
+            </h1>
+
+            <p>
+              Participations
+            </p>
+
           </div>
 
-          <div
-            style={{
-              background: "white",
-              color: "black",
-              padding: "30px",
-              borderRadius: "20px",
-              width: "200px"
-            }}
-          >
-            <h2>0</h2>
-            <p>My Coupons</p>
+          <div className="dashboard-card purple-card">
+
+            <div className="card-icon">
+              🎁
+            </div>
+
+            <h1>
+              {stats.couponCount}
+            </h1>
+
+            <p>
+              My Coupons
+            </p>
+
           </div>
 
-          <div
-            style={{
-              background: "white",
-              color: "black",
-              padding: "30px",
-              borderRadius: "20px",
-              width: "200px"
-            }}
-          >
-            <h2>0</h2>
-            <p>Winning Coupons</p>
+          <div className="dashboard-card orange-card">
+
+            <div className="card-icon">
+              🏆
+            </div>
+
+            <h1>
+              {stats.winnerCount}
+            </h1>
+
+            <p>
+              Winning Coupons
+            </p>
+
+          </div>
+
+        </div>
+
+
+        {/* Activity + Actions */}
+
+        <div className="activity-wrapper">
+
+          <div className="activity-section">
+
+            <h2>
+
+              Recent Activity
+
+            </h2>
+
+            <div className="activity-card">
+
+              <div>
+                ✅ Joined campaigns and collected rewards.
+              </div>
+
+              <span>
+                2h ago
+              </span>
+
+            </div>
+
+            <div className="activity-card">
+
+              <div>
+                🎁 Coupons assigned successfully.
+              </div>
+
+              <span>
+                5h ago
+              </span>
+
+            </div>
+
+            <div className="activity-card">
+
+              <div>
+                🏆 Winners will appear here after draw results.
+              </div>
+
+              <span>
+                1d ago
+              </span>
+
+            </div>
+
+            <div className="activity-card">
+
+              <div>
+                🎟 Keep participating to win exciting prizes.
+              </div>
+
+              <span>
+                2d ago
+              </span>
+
+            </div>
+
           </div>
 
         </div>

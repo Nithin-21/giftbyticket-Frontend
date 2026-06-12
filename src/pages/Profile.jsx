@@ -125,9 +125,10 @@ function Profile() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) =>
-                  setEmail(e.target.value)
-                }
+                disabled
+                //onChange={(e) => setMobile(e.target.value) }
+
+                
               />
 
             </div>
@@ -141,9 +142,8 @@ function Profile() {
               <input
                 type="text"
                 value={mobile}
-                onChange={(e) =>
-                  setMobile(e.target.value)
-                }
+                disabled
+                //onChange={(e) => setMobile(e.target.value) }
               />
 
             </div>
