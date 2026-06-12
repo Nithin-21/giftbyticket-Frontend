@@ -20,6 +20,7 @@ function MyCoupons() {
       const userId = localStorage.getItem("userId");
 
       const response = await getCouponsByUser(userId);
+
       console.log(response.data);
 
       setCoupons(response.data);
@@ -34,6 +35,14 @@ function MyCoupons() {
 
   };
 
+  const copyCode = (code) => {
+
+    navigator.clipboard.writeText(code);
+
+    alert("Coupon code copied successfully!");
+
+  };
+
   return (
 
     <div className="coupon-layout">
@@ -44,7 +53,9 @@ function MyCoupons() {
 
         <div className="coupon-header">
 
-          <h1>🎟 My Coupons</h1>
+          <h1>
+            🎟 My Coupons
+          </h1>
 
           <p>
             Your rewards and discount coupons.
@@ -56,48 +67,71 @@ function MyCoupons() {
 
           {
 
-            coupons.map((coupon) => (
+            coupons.length > 0 ?
 
-              <div
-                className="coupon-card"
-                key={coupon.id}
-              >
+              coupons.map((coupon) => (
 
-                <div className="coupon-code">
+                <div
+                  className="coupon-card"
+                  key={coupon.id}
+                >
 
-                  {coupon.couponCode}
+                  <div className="coupon-code">
+
+                    🎟 {coupon.couponCode}
+
+                  </div>
+
+                  <h2>
+
+                    {coupon.couponTitle}
+
+                  </h2>
+
+                  <div className="coupon-details">
+
+                    <p>
+
+                      💰 Discount ₹ {coupon.discountAmount}
+
+                    </p>
+
+                    <p>
+
+                      📅 Expiry : {coupon.expiryDate}
+
+                    </p>
+
+                  </div>
+
+                  <button
+                    className="copy-btn"
+                    onClick={() =>
+                      copyCode(coupon.couponCode)
+                    }
+                  >
+
+                    📋 Copy Code
+
+                  </button>
 
                 </div>
 
+              ))
+
+              :
+
+              <div className="empty-coupons">
+
                 <h2>
-
-                  {coupon.couponTitle}
-
+                  No Coupons Available
                 </h2>
 
                 <p>
-
-                  Discount ₹ {coupon.discountAmount}
-
+                  Participate in campaigns to earn coupons.
                 </p>
 
-                <span>
-
-                  Expiry :
-                  {" "}
-                  {coupon.expiryDate}
-
-                </span>
-
-                <button>
-
-                  Copy Code
-
-                </button>
-
               </div>
-
-            ))
 
           }
 

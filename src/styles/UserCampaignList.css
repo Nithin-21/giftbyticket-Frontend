@@ -22,19 +22,18 @@
 }
 
 .campaign-grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
-
 .campaign-card{
-    width:360px;
-    background:linear-gradient(145deg,#1d2540,#242d4d);
+    background:#1d2540;
     border-radius:25px;
-    padding:30px;
-    border:1px solid rgba(255,255,255,.08);
+    padding:25px;
+    max-width:320px;
+    min-height:320px;
     transition:.3s;
-    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .campaign-card:hover{
@@ -43,8 +42,16 @@
 }
 
 .campaign-icon{
-    font-size:45px;
-    margin-bottom:15px;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#2a3152;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+    margin:auto;
+    margin-bottom:20px;
 }
 
 .campaign-card h2{
@@ -71,17 +78,23 @@
     font-weight:600;
 }
 
+.status{
+    background:#0f5132;
+    color:#22c55e;
+    padding:8px 15px;
+    border-radius:15px;
+    font-weight:600;
+}
+
 .participate-btn{
     width:100%;
     border:none;
-    padding:16px;
-    border-radius:15px;
+    padding:15px;
+    border-radius:18px;
     background:linear-gradient(90deg,#7c3aed,#d946ef);
     color:white;
     font-size:17px;
-    font-weight:600;
     cursor:pointer;
-    transition:.3s;
 }
 
 .participate-btn:hover{
