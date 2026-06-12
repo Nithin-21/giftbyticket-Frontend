@@ -233,3 +233,26 @@
     font-size: 1.7rem;
   }
 }
+
+.error-input{
+border:2px solid #ef4444 !important;
+background:#3b2230 !important;
+}
+
+.error-text{
+color:#ef4444;
+font-size:13px;
+margin-top:-12px;
+margin-bottom:10px;
+display:block;
+}
+
+.error-box{
+background:#451a1a;
+border:1px solid #ef4444;
+color:#fecaca;
+padding:12px;
+border-radius:10px;
+margin-bottom:20px;
+text-align:center;
+}
