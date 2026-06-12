@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { getAllCampaigns } from "../services/campaignService";
 import "../styles/UserCampaignList.css";
-
+import { createEntry }
+from "../services/giveawayEntryService";
 function UserCampaignList() {
 
   const [campaigns, setCampaigns] = useState([]);
@@ -31,11 +32,40 @@ function UserCampaignList() {
 
   };
 
-  const handleParticipate = (id) => {
+  const handleParticipate = async (
+  campaignId
+) => {
 
-    alert(`Participating in Campaign ${id}`);
+  try {
 
-  };
+    const userId =
+      localStorage.getItem("userId");
+
+    const response =
+      await createEntry({
+        userId,
+        campaignId
+      });
+
+    alert(
+      `Successfully registered for ${response.data.campaignName}
+
+Coupon Assigned: ${response.data.couponTitle}
+
+Giveaway Code: ${response.data.giveawayCode}`
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      error.response?.data ||
+      "Participation Failed"
+    );
+
+  }
+};
 
   return (
 
