@@ -78,7 +78,7 @@ function MyCoupons() {
 
                   <div className="coupon-code">
 
-                    🎟 {coupon.couponCode}
+                    🎟 {coupon.giveawayCode}
 
                   </div>
 
@@ -107,7 +107,7 @@ function MyCoupons() {
                   <button
                     className="copy-btn"
                     onClick={() =>
-                      copyCode(coupon.couponCode)
+                      copyCode(coupon.giveawayCode)
                     }
                   >
 
